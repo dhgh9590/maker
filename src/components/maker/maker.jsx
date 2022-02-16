@@ -12,12 +12,12 @@ const Maker = ({authService}) => {
             id: "1",
             name: "ellie",
             company: "Samsung",
-            theme: "light",
+            theme: "dark",
             title: "Software Engineer",
             email: "dhgh9590@naver.com",
             message: "go for it",
             fileName: "ellie",
-            fileURL: "ellie.png"
+            fileURL: null,
         },
         {
             id: "2",
@@ -34,12 +34,12 @@ const Maker = ({authService}) => {
             id: "3",
             name: "ellie",
             company: "Samsung",
-            theme: "light",
+            theme: "colorful",
             title: "Software Engineer",
             email: "dhgh9590@naver.com",
             message: "go for it",
             fileName: "ellie",
-            fileURL: "ellie.png"
+            fileURL: null,
         }
     ]);
     const nativate = useNavigate();
@@ -55,11 +55,16 @@ const Maker = ({authService}) => {
         });
     });
 
+    const addCard = (card) => {
+        const updated = [...cards, card];
+        setCards(updated);
+    };
+
     return(
         <section className={styles.maker}>
             <Header onLogout={onLogout}></Header>
             <div className={styles.container}>
-                <Editor cards={cards}></Editor>
+                <Editor cards={cards} addCard={addCard}></Editor>
                 <Preview cards={cards}></Preview>
             </div>
             <Footer></Footer>
