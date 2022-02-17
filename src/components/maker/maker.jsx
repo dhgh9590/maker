@@ -6,9 +6,9 @@ import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 import styles from "./maker.module.css";
 
-const Maker = ({authService}) => {
-    const [cards, setCards] = useState([
-        {
+const Maker = ({FileInput,authService}) => {
+    const [cards, setCards] = useState({
+        "1" : {
             id: "1",
             name: "ellie",
             company: "Samsung",
@@ -19,7 +19,7 @@ const Maker = ({authService}) => {
             fileName: "ellie",
             fileURL: null,
         },
-        {
+        "2" : {
             id: "2",
             name: "ellie",
             company: "Samsung",
@@ -30,7 +30,7 @@ const Maker = ({authService}) => {
             fileName: "ellie",
             fileURL: "ellie.png"
         },
-        {
+        "3" : {
             id: "3",
             name: "ellie",
             company: "Samsung",
@@ -41,7 +41,8 @@ const Maker = ({authService}) => {
             fileName: "ellie",
             fileURL: null,
         }
-    ]);
+    });
+
     const nativate = useNavigate();
     const onLogout = () => {
         authService.logout();
@@ -55,16 +56,29 @@ const Maker = ({authService}) => {
         });
     });
 
-    const addCard = (card) => {
-        const updated = [...cards, card];
-        setCards(updated);
+    const createOrUpdateCard = (card) => {
+        setCards(cards => {
+            const updated = {...cards};
+            updated[card.id] = card;
+            return updated;
+        });
     };
+
+    const deleteCard = (card) => {
+        setCards(cards => {
+            const updated = {...cards};
+            delete updated[card.id];
+            return updated;
+        });
+    };
+
+
 
     return(
         <section className={styles.maker}>
             <Header onLogout={onLogout}></Header>
             <div className={styles.container}>
-                <Editor cards={cards} addCard={addCard}></Editor>
+                <Editor FileInput={FileInput} cards={cards} addCard={createOrUpdateCard} updateCard={createOrUpdateCard} deleteCard={deleteCard}></Editor>
                 <Preview cards={cards}></Preview>
             </div>
             <Footer></Footer>
