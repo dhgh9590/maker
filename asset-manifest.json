@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/maker/static/css/main.84b23aaa.css",
+    "main.js": "/maker/static/js/main.84502d36.js",
+    "index.html": "/maker/index.html",
+    "main.84b23aaa.css.map": "/maker/static/css/main.84b23aaa.css.map",
+    "main.84502d36.js.map": "/maker/static/js/main.84502d36.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84b23aaa.css",
+    "static/js/main.84502d36.js"
+  ]
+}
